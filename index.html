@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sekisui Canada Modular Solutions</title>
+    <!-- Load Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Configuration for Sekisui Brand Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'sekisui-primary': '#004EA2', // Corporate Brand Blue (Endeavour)
+                        'sekisui-dark': '#003A7D',   // Darker shade for hover/darker areas
+                        'sekisui-light': '#E6F0FF',  // Light shade for subtle accents
+                    },
+                    // Setting default text to a darker shade for professionalism
+                    textColor: {
+                        'default': '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Setting the default font to Inter for a modern look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb; /* Light background */
+            color: var(--color-default);
+        }
+        
+        /* Ensures smooth scrolling to anchors */
+        html { scroll-behavior: smooth; }
+
+        /* Custom style for the collage effect */
+        .collage-container {
+            position: relative;
+            height: 400px; /* Define a fixed height for the collage area */
+            width: 100%;
+        }
+        .collage-img {
+            position: absolute;
+            width: 50%; /* Reduced width from 60% to 50% */
+            max-height: 80%;
+            object-fit: cover;
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border: 4px solid white;
+            transition: transform 0.3s ease;
+        }
+        .collage-img:hover {
+            transform: scale(1.03);
+            z-index: 10;
+        }
+        /* Positioning the three images (Adjusted for minimal overlap) */
+        #img1 { top: 20px; left: 0; z-index: 5; } /* Slightly lower top, flush left */
+        #img2 { top: 0; left: 25%; z-index: 6; } /* Higher top, moved center/left */
+        #img3 { bottom: 20px; right: 0; z-index: 7; } /* Slightly higher bottom, flush right */
+
+        /* Mobile adjustments for the collage */
+        @media (max-width: 768px) {
+             .collage-container {
+                height: 300px; /* Shorter height on mobile */
+                margin-bottom: 2rem;
+            }
+            .collage-img {
+                width: 70%; /* Slightly smaller for mobile */
+            }
+            #img1 { top: 20px; left: 5%; }
+            #img2 { top: 0; left: 15%; }
+            #img3 { bottom: 20px; right: 5%; }
+        }
+
+        /* Styling for the horizontal scrolling newsroom */
+        .news-scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .news-scroll-container::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* Gray-300 */
+            border-radius: 10px;
+        }
+        .news-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; /* Gray-400 */
+        }
+
+    </style>
+</head>
+<body class="min-h-screen antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-lg sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo/Site Title -->
+            <a href="#" onclick="showSection('hero'); return false;" class="flex items-center space-x-3 cursor-pointer">
+                <!-- Sekisui Logo Image - NOTE FOR LOCAL USE: You must save the logo image (the one previously uploaded) as 'sekisui-logo.png' in the same folder as this index.html file. -->
+                <img src="sekisui-logo.png" alt="Sekisui Logo" class="h-6 md:h-8 w-auto">
+                <!-- Descriptive Text for the Division -->
+                <span class="text-xl font-normal text-gray-700 tracking-tight">
+                    Canada Modular Solutions
+                </span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#hero" onclick="showSection('hero'); return false;" class="text-gray-700 hover:text-sekisui-primary transition duration-150 ease-in-out font-medium">Home</a>
+                <a href="#benefits" onclick="showSection('benefits'); return false;" class="text-gray-700 hover:text-sekisui-primary transition duration-150 ease-in-out font-medium">Benefits</a>
+                <a href="#history" onclick="showSection('history'); return false;" class="text-gray-700 hover:text-sekisui-primary transition duration-150 ease-in-out font-medium">History</a>
+                <a href="#about" onclick="showSection('about'); return false;" class="text-gray-700 hover:text-sekisui-primary transition duration-150 ease-in-out font-medium">About Us</a>
+                <a href="#contact" onclick="showSection('contact'); return false;" class="text-gray-700 hover:text-sekisui-primary transition duration-150 ease-in-out font-medium">Contact</a>
+            </nav>
+
+            <!-- CTA Button (Now navigates to Contact Form) -->
+            <a href="#contact" onclick="showSection('contact'); return false;" class="hidden md:block bg-sekisui-primary text-white px-5 py-2 rounded-lg hover:bg-sekisui-dark transition duration-150 ease-in-out shadow-xl font-semibold">
+                Inquire Now
+            </a>
+
+            <!-- Mobile Menu Toggle (Simplified) -->
+            <button class="md:hidden text-gray-600 hover:text-sekisui-primary p-2 rounded-md">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container for SPA Simulation -->
+    <div id="content-container">
+
+        <!-- Hero Section (Initially visible) -->
+        <section id="hero" class="page-section py-16 md:py-28 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
+                    Pioneering <span class="text-sekisui-primary">Modular Construction</span> in Canada
+                </h1>
+                <p class="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
+                    Delivering precision-engineered, sustainable, and timely building solutions that meet the diverse needs of the Canadian market, from residential to commercial projects.
+                </p>
+                <div class="space-x-4">
+                    <a href="#benefits" onclick="showSection('benefits'); return false;" class="inline-block bg-sekisui-primary text-white text-lg font-semibold px-8 py-3 rounded-xl shadow-2xl hover:bg-sekisui-dark transition duration-300 transform hover:scale-[1.02]">
+                        Explore Our Solutions
+                    </a>
+                    <a href="#contact" onclick="showSection('contact'); return false;" class="inline-block bg-gray-200 text-gray-800 text-lg font-semibold px-8 py-3 rounded-xl hover:bg-gray-300 transition duration-300">
+                        Request a Consultation
+                    </a>
+                </div>
+                
+                <!-- Placeholder Image/Illustration: Modular Building -->
+                <div class="mt-16 mb-20">
+                    <!-- Updated image source to main.png -->
+                    <img src="main.png" 
+                         alt="Architectural visualization of modular construction" 
+                         class="rounded-3xl shadow-2xl mx-auto w-full max-w-6xl border-8 border-gray-100"
+                         onerror="this.onerror=null;this.src='https://placehold.co/1200x550/e6f0ff/004EA2?text=Modular+Construction'"
+                    >
+                </div>
+            </div>
+
+            <!-- Newsroom Section - New Addition to Hero Page -->
+            <div class="bg-sekisui-light py-12">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-left">
+                        Latest News & Insights
+                    </h2>
+
+                    <!-- Horizontal Scrolling Container -->
+                    <div class="flex space-x-6 pb-4 overflow-x-scroll news-scroll-container">
+                        
+                        <!-- News Card 1 -->
+                        <div class="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
+                            <div class="p-4">
+                                <span class="text-xs font-semibold text-sekisui-primary uppercase">Press Release</span>
+                                <h4 class="text-lg font-bold text-gray-900 mt-1 mb-2">Sekisui Chemical establishes JV in Canada</h4>
+                                <p class="text-sm text-gray-600 mb-3">Sekisui Canada Modular Solutions Inc. is formed to introduce superior, factory-built construction systems to the North American market...</p>
+                                <a href="#" onclick="showNewsDetail('article1'); return false;" class="text-sekisui-primary text-sm font-semibold hover:text-sekisui-dark">Read More &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- News Card 2 - UPDATED FOR W47.1 & A660 -->
+                        <div class="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
+                            <div class="p-4">
+                                <span class="text-xs font-semibold text-sekisui-primary uppercase">Press Release</span>
+                                <h4 class="text-lg font-bold text-gray-900 mt-1 mb-2">Achieving Canadian Quality: W47.1 & A660 Certified</h4>
+                                <p class="text-sm text-gray-600 mb-3">Sekisui Canada Modular Solutions Inc. successfully obtains major Canadian welding and modular building certifications...</p>
+                                <a href="#" onclick="showNewsDetail('article2'); return false;" class="text-sekisui-primary text-sm font-semibold hover:text-sekisui-dark">Read More &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- News Card 3 -->
+                        <div class="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
+                            <div class="p-4">
+                                <span class="text-xs font-semibold text-sekisui-primary uppercase">Insight</span>
+                                <h4 class="text-lg font-bold text-gray-900 mt-1 mb-2">The Future of Sustainable Housing in BC</h4>
+                                <p class="text-sm text-gray-600 mb-3">An analysis of regulatory changes and how modular construction is meeting British Columbia's net-zero goals...</p>
+                                <a href="#" onclick="showNewsDetail('article3'); return false;" class="text-sekisui-primary text-sm font-semibold hover:text-sekisui-dark">Read More &rarr;</a>
+                            </div>
+                        </div>
+                        
+                        <!-- News Card 4 (Placeholder) -->
+                        <div class="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
+                            <div class="p-4">
+                                <span class="text-xs font-semibold text-sekisui-primary uppercase">Event</span>
+                                <h4 class="text-lg font-bold text-gray-900 mt-1 mb-2">Meet Us at Construct Canada Expo 2025</h4>
+                                <p class="text-sm text-gray-600 mb-3">Visit our booth at the largest construction event in Toronto to see our latest innovations and designs.</p>
+                                <a href="#" onclick="showNewsDetail('article4'); return false;" class="text-sekisui-primary text-sm font-semibold hover:text-sekisui-dark">Read More &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Newsroom Section -->
+        </section>
+
+        <!-- News Detail Page (Hidden by default) -->
+        <section id="news-detail" class="page-section py-16 md:py-28 bg-white hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <a href="#" onclick="showSection('hero'); return false;" class="inline-flex items-center text-sekisui-primary hover:text-sekisui-dark font-medium mb-6">
+                    <svg class="w-4 h-4 mr-1 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    Back to Home
+                </a>
+                <div class="bg-sekisui-light p-6 rounded-xl mb-6">
+                     <span id="news-category" class="text-sm font-semibold text-sekisui-dark uppercase"></span>
+                </div>
+                <h1 id="news-title" class="text-4xl font-extrabold text-gray-900 mb-4"></h1>
+                <p id="news-date" class="text-sm text-gray-500 mb-8"></p>
+                <div id="news-content" class="prose max-w-none text-lg text-gray-700 space-y-6">
+                    <!-- Full article content will be injected here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="page-section py-20 bg-gray-50 hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-gray-900 mb-4">
+                    Advantages of Sekisui Modular
+                </h2>
+                <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+                    Enhancing the build process with factory precision, speed, and exceptional quality.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <!-- Benefit 1: Speed -->
+                    <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-sekisui-primary">
+                        <div class="text-sekisui-primary mb-4">
+                             <!-- Clock Icon -->
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Accelerated Timelines</h3>
+                        <p class="text-gray-600">Factory-based construction minimizes weather delays and allows simultaneous site work, significantly reducing time to occupancy.</p>
+                    </div>
+
+                    <!-- Benefit 2: Quality/Precision -->
+                    <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-sekisui-primary">
+                        <div class="text-sekisui-primary mb-4">
+                            <!-- Ruler/Measure Icon -->
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Uncompromising Quality</h3>
+                        <p class="text-gray-600">Controlled indoor environments ensure precision assembly, leading to superior material integration and structural integrity.</p>
+                    </div>
+
+                    <!-- Benefit 3: Sustainability -->
+                    <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-sekisui-primary">
+                        <div class="text-sekisui-primary mb-4">
+                             <!-- Leaf Icon -->
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m0 0l-1.414 1.414m1.414-1.414l1.414 1.414m-1.414 1.414l1.414-1.414m-1.414 1.414L12 12m0 0l6.75-6.75m-6.75 6.75l-6.75 6.75m6.75-6.75l6.75 6.75m-6.75-6.75L12 12m0 0l-6.75-6.75m6.75 6.75l6.75 6.75"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Sustainable & Efficient</h3>
+                        <p class="text-gray-600">Reduced site waste and high thermal performance contribute to greener buildings and lower long-term operating costs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- History Section (Previously Canadian Focus) -->
+        <section id="history" class="page-section py-20 bg-white hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="md:flex md:items-center md:space-x-12">
+                    <!-- Image Collage (New Structure) -->
+                    <div class="md:w-1/2 flex justify-center items-center">
+                        <div class="collage-container">
+                            <!-- Image 1: Manufacturing/Factory -->
+                            <img src="history-img-1.png" id="img1" alt="Sekisui Modular Factory Interior" class="collage-img"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/a8c7f3/004EA2?text=Factory+Precision'"
+                            >
+                            <!-- Image 2: Finished Residential Project -->
+                            <img src="history-img-2.png" id="img2" alt="Finished Sekisui Heim Residential Project" class="collage-img"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/c7d2fe/004EA2?text=Japan+Residential'"
+                            >
+                            <!-- Image 3: Building Installation/Crane Lift -->
+                            <img src="history-img-3.png" id="img3" alt="Modular Unit Installation by Crane" class="collage-img"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/e0f2fe/004EA2?text=On-Site+Assembly'"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2 mt-[420px] md:mt-0">
+                        <span class="inline-block bg-sekisui-light text-sekisui-dark text-xs font-medium px-3 py-1 rounded-full uppercase mb-3">Our Heritage of Innovation</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+                            Four Decades of Modular Excellence: The Sekisui Heim Story
+                        </h2>
+                        <p class="text-gray-600 text-lg mb-6">
+                            The foundation of Sekisui Canada Modular Solutions lies in the success story of **Sekisui Heim** in Japan. Beginning in the early 1970s, Sekisui Heim pioneered high-quality, factory-built residential construction, moving the entire process indoors to ensure superior precision and consistency. This tried and tested method has since delivered hundreds of thousands of homes, successfully withstanding Japan's rigorous seismic and climate challenges.
+                        </p>
+                        <p class="text-gray-600 text-lg mb-6 font-semibold">
+                            Today, we are proud to bring this proven methodology, perfected over decades in one of the world's most demanding building environments, directly to Canada.
+                        </p>
+                        <p class="text-gray-600 text-lg">
+                            We adapt Sekisui's patented manufacturing technologies and quality control standards to the unique needs and climate of the Canadian market, offering reliable, sustainable, and fast-to-build solutions for the next generation of Canadian infrastructure.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Us Section -->
+        <section id="about" class="page-section py-20 bg-white hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-12 border-b-2 border-sekisui-light pb-4">
+                    About Sekisui Canada Modular Solutions
+                </h2>
+
+                <!-- Corporate History -->
+                <div class="mb-12 max-w-5xl mx-auto">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4 text-center">Our Global Heritage, Local Commitment</h3>
+                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">
+                        Sekisui Canada Modular Solutions Inc. leverages the decades-long global expertise of Sekisui Chemical Co., Ltd. in innovative building technologies and sustainable manufacturing. We bring this world-class pedigree directly to the Canadian market, adapting proven systems to meet the unique challenges and regulatory environment of every province. Our mission is to transform the construction industry through off-site fabrication, delivering superior, predictable, and environmentally responsible projects.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        We are committed to building long-term partnerships with Canadian developers, architects, and institutions, providing a smarter path to occupancy for everything from multi-unit residential buildings to specialized commercial facilities.
+                    </p>
+                </div>
+
+                <!-- Prominent Leadership Card (Masatoshi Kifuji) -->
+                <div class="max-w-3xl mx-auto mb-16">
+                    <div class="text-center bg-sekisui-light p-8 rounded-2xl shadow-xl border-4 border-sekisui-primary">
+                        <img src="https://placehold.co/150x150/d1d5db/374151?text=M.K." alt="Team Member Avatar" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
+                        <h4 class="text-2xl font-extrabold text-gray-900">Masatoshi Kifuji</h4>
+                        <p class="text-sekisui-primary text-xl font-bold mb-3">President and Chief Executive Officer</p>
+                        <p class="text-base text-gray-600 max-w-lg mx-auto">
+                            Mr. Kifuji provides the strategic leadership and global vision driving Sekisui Chemical Group's commitment to sustainable growth and pioneering innovative solutions worldwide.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Supporting Leadership Team -->
+                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Supporting Leadership Team</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                    
+                    <!-- Team Member 2 (Joshua Brown) -->
+                    <div class="text-center bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
+                        <img src="https://placehold.co/150x150/d1d5db/374151?text=J.B." alt="Team Member Avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md">
+                        <h4 class="text-xl font-bold text-gray-900">Joshua Brown</h4>
+                        <p class="text-sekisui-primary font-semibold mb-2">Vice President and Chief Manufacturing Officer</p>
+                        <p class="text-sm text-gray-500">Oversees factory operations, quality control, and production efficiency across all modular facilities.</p>
+                    </div>
+
+                    <!-- Team Member 3 (Shunto Nomura) -->
+                    <div class="text-center bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
+                        <img src="https://placehold.co/150x150/d1d5db/374151?text=S.N." alt="Team Member Avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md">
+                        <h4 class="text-xl font-bold text-gray-900">Shunto Nomura</h4>
+                        <p class="text-sekisui-primary font-semibold mb-2">Manufacturing Technology Manager</p>
+                        <p class="text-sm text-gray-500">Manages site logistics and coordination to ensure rapid, seamless installation.</p>
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW Contact Form Section -->
+        <section id="contact" class="page-section py-20 bg-sekisui-light hidden">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-4">
+                    Get in Touch
+                </h2>
+                <p class="text-xl text-gray-600 text-center mb-12">
+                    Start a conversation with our Canadian Modular Solutions team today.
+                </p>
+
+                <form class="bg-white p-8 md:p-10 rounded-xl shadow-2xl border-t-4 border-sekisui-primary space-y-6">
+                    
+                    <!-- Name and Company (Two Columns on Desktop) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="John Doe">
+                        </div>
+                        <div>
+                            <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company / Organization</label>
+                            <input type="text" id="company" name="company" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="Sekisui Canada Modular Solutions Inc.">
+                        </div>
+                    </div>
+
+                    <!-- Email and Telephone (Two Columns on Desktop) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="name@company.com">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telephone Number</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="(555) 555-5555">
+                        </div>
+                    </div>
+
+                    <!-- Reason for Inquiry -->
+                    <div>
+                        <label for="inquiry" class="block text-sm font-medium text-gray-700 mb-1">Reason for Inquiry</label>
+                        <textarea id="inquiry" name="inquiry" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="I am interested in multi-unit residential projects in Ontario and would like a quote..."></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div>
+                        <!-- Note: Since this is a static HTML file, the form won't actually submit data unless connected to a backend service. -->
+                        <button type="submit" class="w-full bg-sekisui-primary text-white text-lg font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-sekisui-dark transition duration-300 transform hover:scale-[1.01]">
+                            Send Inquiry
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+
+    </div><!-- End of #content-container -->
+
+    <!-- Call to Action (CTA) Section - Renamed to pre-footer-cta -->
+    <section id="pre-footer-cta" class="py-16 md:py-20 bg-sekisui-primary">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+                Have a Quick Question?
+            </h2>
+            <p class="text-xl text-white/80 mb-8">
+                If you prefer not to use the form, contact our specialists directly.
+            </p>
+            <!-- Link changed to "Email Our Team" and uses the mailto: protocol with the new address -->
+            <a href="mailto:sales@sekisui-cms.com" class="inline-block bg-white text-sekisui-primary text-xl font-bold px-10 py-4 rounded-xl shadow-3xl hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                Email Our Team
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-sekisui-dark py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-300">
+            <p>&copy; 2025 Sekisui Canada Modular Solutions Inc. All rights reserved.</p>
+            <div class="mt-2 text-sm space-x-4">
+                <a href="#" class="hover:text-white">Privacy Policy</a>
+                <a href="#" class="hover:text-white">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for SPA Simulation and News Content -->
+    <script>
+        const ARTICLES = {
+            article1: {
+                category: 'Press Release',
+                title: 'Sekisui Chemical establishes JV in Canada',
+                date: 'November 15, 2025',
+                content: `
+                    <p><strong>BRANTFORD, ON</strong> &mdash; Sekisui Chemical Co., Ltd. is proud to announce the establishment of a joint venture, **Sekisui Canada Modular Solutions Inc.**, dedicated to introducing its superior, factory-built construction systems to the Canadian market.</p>
+                    <p>This venture marks a significant expansion of Sekisui's global housing and construction business, leveraging decades of expertise from its highly successful Sekisui Heim division in Japan. The modular systems are specifically engineered and manufactured to address Canada's critical need for high-quality, sustainable, and rapidly deployable housing and commercial infrastructure.</p>
+                    <p>The new Canadian operation is focused on adapting the proven, precision-based construction methodology—which ensures quality and reliability regardless of weather conditions—to meet or exceed all Canadian building standards and cold-weather requirements.</p>
+                    <p>President and Chief Executive Officer Masatoshi Kifuji stated, "Canada presents a strong opportunity where our industrialized building systems can provide immediate, positive impact on construction speed, quality, and environmental performance. We are committed to being a reliable partner in building Canada's future."</p>
+                `
+            },
+            article2: {
+                category: 'Press Release',
+                title: 'Sekisui Canada Achieves W47.1 and A660 Certifications',
+                date: 'October 28, 2025',
+                content: `
+                    <p><strong>Burlington, ON</strong> &mdash; Sekisui Canada Modular Solutions Inc. has successfully achieved key Canadian Standards Association (CSA) certifications, reinforcing its commitment to high-quality, industrialized construction.</p>
+                    <p>The company is now certified to:
+                    <ul>
+                        <li><strong>CSA W47.1:</strong> Certification of Companies for Fusion Welding of Steel Structures. This rigorous standard confirms that our facility, personnel, and procedures meet the highest standards for welding quality and inspection of steel modular frames, ensuring unparalleled structural integrity.</li>
+                        <li><strong>CSA A660:</strong> Certification for Prefabricated Buildings, Modules, and Transportable Buildings. This certification verifies that our modular units are manufactured under a strict, audited quality control program that ensures compliance with all Canadian Building Codes and necessary provincial regulations before they even leave the factory.</li>
+                    </ul></p>
+                    <p>Joshua Brown, VP and Chief Manufacturing Officer, commented: "Achieving both W47.1 and A660 demonstrates that we have not only adapted our advanced Japanese manufacturing principles to the Canadian environment but have also rigorously met and exceeded local regulatory demands. This provides our clients with complete confidence in the quality and durability of every module we deliver."</p>
+                    <p>These certifications are fundamental to our promise of delivering predictable timelines and superior quality, regardless of construction site conditions.</p>
+                `
+            },
+            article3: {
+                category: 'Insight',
+                title: 'The Future of Sustainable Housing in BC',
+                date: 'September 1, 2025',
+                content: `
+                    <p>British Columbia has established ambitious targets for energy efficiency and reduced carbon emissions in new housing. Meeting these aggressive net-zero goals requires a fundamental shift away from conventional construction.</p>
+                    <p>Modular construction offers a vital pathway. Because modules are built in a controlled environment, they achieve air-tightness and thermal bridging standards that are virtually impossible to replicate consistently on a traditional job site. This precision translates directly into energy savings and a smaller operational carbon footprint for the lifetime of the building.</p>
+                    <p>Our systems not only meet BC's Step Code requirements but can exceed them, providing developers in the province with a reliable, scalable, and sustainable building partner ready for the future of Canadian construction.</p>
+                `
+            },
+            article4: {
+                category: 'Event',
+                title: 'Meet Us at The Building Show 2025',
+                date: 'August 10, 2025',
+                content: `
+                    <p>We are excited to announce our participation in The Building Show 2025! Join us at The Building Show on December 5-7 in Toronto to experience our latest modular technology showcase.</p>
+                    <p>Our team, including VP Joshua Brown and Manufacturing Technology Manager Shunto Nomura, will be on hand to discuss how Sekisui's factory-built systems can guarantee delivery timelines, enhance build quality, and reduce the environmental impact of your next major project.</p>
+                    <p>Don't miss our live presentation on "Prefabricated Solutions for Cold Climate Durability" on Friday at 2:00 PM in the Innovation Theatre. We look forward to seeing you there!</p>
+                `
+            }
+        };
+
+        function showSection(sectionId) {
+            // Hide all sections marked with 'page-section' class
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show the requested section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                // Scroll to the top of the newly displayed section's container
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function showNewsDetail(articleId) {
+            const article = ARTICLES[articleId];
+            if (!article) return;
+
+            // Update content elements
+            document.getElementById('news-category').textContent = article.category;
+            document.getElementById('news-title').textContent = article.title;
+            document.getElementById('news-date').textContent = article.date;
+            document.getElementById('news-content').innerHTML = article.content;
+
+            // Switch to the news-detail section
+            showSection('news-detail');
+        }
+
+        // Initialize: Ensure only the hero section is visible on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            } else {
+                // Default to showing hero on initial load
+                showSection('hero');
+            }
+        });
+    </script>
+
+</body>
+</html>
