@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+   <link rel="icon" type="image/png" href="Logover.png"> 
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sekisui Canada Modular Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,44 +35,7 @@
         /* Ensures smooth scrolling to anchors */
         html { scroll-behavior: smooth; }
 
-        /* Custom style for the collage effect */
-        .collage-container {
-            position: relative;
-            height: 400px; /* Define a fixed height for the collage area */
-            width: 100%;
-        }
-        .collage-img {
-            position: absolute;
-            width: 50%; /* Reduced width from 60% to 50% */
-            max-height: 80%;
-            object-fit: cover;
-            border-radius: 1rem; /* rounded-xl */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
-            border: 4px solid white;
-            transition: transform 0.3s ease;
-        }
-        .collage-img:hover {
-            transform: scale(1.03);
-            z-index: 10;
-        }
-        /* Positioning the three images (Adjusted for minimal overlap) */
-        #img1 { top: 0px; left: 30px; z-index: 5; } /* Slightly lower top, flush left */
-        #img2 { top: 150px; left: 100px; z-index: 6; } /* Higher top, moved center/left */
-        #img3 { bottom: 20px; right: 0; z-index: 7; } /* Slightly higher bottom, flush right */
-
-        /* Mobile adjustments for the collage */
-        @media (max-width: 768px) {
-             .collage-container {
-                height: 300px; /* Shorter height on mobile */
-                margin-bottom: 2rem;
-            }
-            .collage-img {
-                width: 70%; /* Slightly smaller for mobile */
-            }
-            #img1 { top: 20px; left: 5%; }
-            #img2 { top: 0; right: 15%; }
-            #img3 { bottom: 20px; right: 5%; }
-        }
+       
 
         /* Styling for the horizontal scrolling newsroom */
         .news-scroll-container::-webkit-scrollbar {
@@ -85,17 +49,159 @@
             background: #94a3b8; /* Gray-400 */
         }
 
+/* Timeline styling */
+.timeline-container {
+    position: relative;
+    padding-left: 2rem;
+}
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #cbd5e1; /* Gray-300 */
+}
+.timeline-dot {
+    position: absolute;
+    left: -2rem;
+    top: 0.5rem;
+    width: 16px;
+    height: 16px;
+    background: #004EA2; /* Sekisui Blue */
+    border-radius: 50%;
+    border: 3px solid white;
+    z-index: 1;
+}
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+}
+/* Scroll Reveal Animation for Timeline */
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(80px); /* Pushed down to start */
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth spring-like animation */
+}
+
+/* The class added by JavaScript when scrolling */
+.timeline-item.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Make the timeline line grow */
+.timeline-container::before {
+    /* Existing properties... */
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #cbd5e1;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform 1.5s ease-out;
+}
+
+.timeline-container.show-line::before {
+    transform: scaleY(1);
+}
+ /* --- ANIMATED LOGO CSS --- */
+.scroll-trigger-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.logo-graphics {
+    position: relative;
+    width: 100%;
+    height: 180px; 
+}
+
+.logo-dot {
+    position: relative;
+    top: 62px;
+    left: 8.2%; 
+    width: 330px; 
+    z-index: 1;
+}
+
+.logo-building {
+    position: relative;
+    top: -113px;
+    right: -7.5%;
+    width: 350px;
+    z-index: 2;
+}
+
+/* Nudge these top/left values to align your flying box perfectly */
+.logo-box {
+    position: relative;
+    z-index: 3; 
+    width: 350px; 
+    top: -294px;   
+    left: 7.5%;   
+}
+
+.logo-text {
+    margin-top: -110px;
+    width: 80%;
+    text-align: center;
+}
+
+.logo-text img {
+    width: 80%;
+    max-width: 400px;
+}
+
+.animate-slide-right {
+    opacity: 0;
+    transform: translateX(200px);
+    transition: all 1.5s ease-out;
+}
+
+.animate-slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease-out;
+    transition-delay: 2.5s; 
+}
+
+.animate-drop-down {
+    opacity: 0;
+    transform: translateY(-200px); 
+    transition: all 1.5s ; 
+}
+
+.is-visible .animate-slide-right,
+.is-visible .animate-slide-up,
+.is-visible .animate-drop-down {
+    opacity: 1;
+    transform: translate(0, 0); 
+}
+
+.is-visible .animate-drop-down {
+    transition-delay: 1.5s; 
+}
+
     </style>
 </head>
 <body class="min-h-screen antialiased">
 
     <header class="bg-white shadow-lg sticky top-0 z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <a href="#" onclick="showSection('hero'); return false;" class="flex items-center space-x-3 cursor-pointer">
-                <img src="sekisui-logo.png" alt="Sekisui Logo" class="h-6 md:h-8 w-auto">
-                <span class="text-xl font-normal text-gray-700 tracking-tight">
-                    Canada Modular Solutions
-                </span>
+                <img src="sekisui-logo.png" alt="Sekisui Logo" class="h-9 md:h-12 w-auto">
+                
             </a>
             
             <nav class="hidden md:flex space-x-8">
@@ -106,11 +212,11 @@
                 <a href="#contact" onclick="showSection('contact'); return false;" class="text-gray-700 hover:text-sekisui-primary transition duration-150 ease-in-out font-medium">Contact</a>
             </nav>
 
-            <a href="#contact" onclick="showSection('contact'); return false;" class="hidden md:block bg-sekisui-primary text-white px-5 py-2 rounded-lg hover:bg-sekisui-dark transition duration-150 ease-in-out shadow-xl font-semibold">
+            <a href="#contact" onclick="showSection('contact'); return false;" class="hidden md:block bg-sekisui-primary text-white px-5 py-2 square-lg hover:bg-sekisui-dark transition duration-150 ease-in-out shadow-xl font-semibold">
                 Inquire Now
             </a>
 
-            <button class="md:hidden text-gray-600 hover:text-sekisui-primary p-2 rounded-md" onclick="toggleMobileMenu()">
+            <button class="md:hidden text-gray-600 hover:text-sekisui-primary p-2 square-md" onclick="toggleMobileMenu()">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
@@ -125,7 +231,7 @@
                         Canada Modular Solutions
                     </span>
                 </a>
-                <button type="button" class="text-gray-400 hover:text-gray-500 p-2 rounded-md" onclick="closeMobileMenu()">
+                <button type="button" class="text-gray-400 hover:text-gray-500 p-2 square-md" onclick="closeMobileMenu()">
                     <span class="sr-only">Close menu</span>
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -134,15 +240,15 @@
             </div>
             <div class="mt-8">
                 <nav class="space-y-4">
-                    <a href="#hero" onclick="showSection('hero'); closeMobileMenu(); return false;" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">Home</a>
-                    <a href="#benefits" onclick="showSection('benefits'); closeMobileMenu(); return false;" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">Benefits</a>
-                    <a href="#history" onclick="showSection('history'); closeMobileMenu(); return false;" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">History</a>
-                    <a href="#about" onclick="showSection('about'); closeMobileMenu(); return false;" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">About Us</a>
-                    <a href="#contact" onclick="showSection('contact'); closeMobileMenu(); return false;" class="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">Contact</a>
+                    <a href="#hero" onclick="showSection('hero'); closeMobileMenu(); return false;" class="block px-3 py-3 square-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">Home</a>
+                    <a href="#benefits" onclick="showSection('benefits'); closeMobileMenu(); return false;" class="block px-3 py-3 square-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">Benefits</a>
+                    <a href="#history" onclick="showSection('history'); closeMobileMenu(); return false;" class="block px-3 py-3 square-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">History</a>
+                    <a href="#about" onclick="showSection('about'); closeMobileMenu(); return false;" class="block px-3 py-3 square-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">About Us</a>
+                    <a href="#contact" onclick="showSection('contact'); closeMobileMenu(); return false;" class="block px-3 py-3 square-md text-base font-medium text-gray-700 hover:bg-sekisui-light hover:text-sekisui-primary transition duration-150">Contact</a>
                 </nav>
             </div>
             <div class="mt-6">
-                <a href="#contact" onclick="showSection('contact'); closeMobileMenu(); return false;" class="block w-full bg-sekisui-primary text-white text-lg font-semibold px-5 py-3 rounded-lg text-center hover:bg-sekisui-dark transition duration-150 ease-in-out shadow-xl">
+                <a href="#contact" onclick="showSection('contact'); closeMobileMenu(); return false;" class="block w-full bg-sekisui-primary text-white text-lg font-semibold px-5 py-3 square-lg text-center hover:bg-sekisui-dark transition duration-150 ease-in-out shadow-xl">
                     Inquire Now
                 </a>
             </div>
@@ -150,79 +256,60 @@
     </div>
     <div id="content-container">
 
-        <section id="hero" class="page-section py-16 md:py-28 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
-                    Pioneering <span class="text-sekisui-primary">Modular Construction</span> in Canada
-                </h1>
-                <p class="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
-                    Delivering precision-engineered, sustainable, and timely building solutions that meet the diverse needs of the Canadian market, from residential to commercial projects.
-                </p>
-                <div class="space-x-4">
-                    <a href="#benefits" onclick="showSection('benefits'); return false;" class="inline-block bg-sekisui-primary text-white text-lg font-semibold px-8 py-3 rounded-xl shadow-2xl hover:bg-sekisui-dark transition duration-300 transform hover:scale-[1.02]">
-                        Explore   Our   Solutions
-                    </a>
-                    <a href="#contact" onclick="showSection('contact'); return false;" class="inline-block bg-gray-200 text-gray-800 text-lg font-semibold px-8 py-3 rounded-xl hover:bg-gray-300 transition duration-300 transform hover:scale-[1.02]">
-                        Request a Consultation
-                    </a>
-                </div>
-                
-                <div class="mt-16 mb-20">
-                    <img src="main.png" 
-                         alt="Architectural visualization of modular construction" 
-                         class="rounded-3xl shadow-2xl mx-auto w-full max-w-6xl border-8 border-gray-100"
-                         onerror="this.onerror=null;this.src='https://placehold.co/1200x550/e6f0ff/004EA2?text=Modular+Construction'"
-                    >
-                </div>
+        <section id="hero" class="page-section py-8 md:py-8 bg-white">
+   
+
+        <div class="relative overflow-hidden w-full group max-h-screen md:max-h-[600px]">
+    <div id="slider-wrapper" class="flex transition-transform duration-700 ease-in-out">
+        
+        <div class="min-w-full aspect-square md:aspect-auto md:h-[600px] relative">
+            <img src="Slider1.png" class="w-full h-full object-cover" alt="Modular Construction">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent flex flex-col justify-end p-8 md:p-16 text-white">
+                <h2 class="text-3xl md:text-5xl font-bold mb-2">Engineered for Precision. Designed for Life.</h2>
+                <p class="text-lg md:text-xl opacity-90 max-w-2xl">From controlled manufacturing to the comfort of home.</p>
             </div>
-
-            <div class="bg-sekisui-light py-12">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-left">
-                        Latest News & Insights
-                    </h2>
-
-                    <div class="flex space-x-6 pb-4 overflow-x-scroll news-scroll-container">
-                        
-                        <div class="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
-                            <div class="p-4">
-                                <span class="text-xs font-semibold text-sekisui-primary uppercase">Press Release</span>
-                                <h4 class="text-lg font-bold text-gray-900 mt-1 mb-2">Sekisui Chemical establishes JV in Canada</h4>
-                                <p class="text-sm text-gray-600 mb-3">Sekisui Canada Modular Solutions Inc. is formed to introduce superior, factory-built construction systems to the North American market...</p>
-                                <a href="#" onclick="showNewsDetail('article1'); return false;" class="text-sekisui-primary text-sm font-semibold hover:text-sekisui-dark">Read More &rarr;</a>
-                            </div>
-                        </div>
-
-                        <div class="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
-                            <div class="p-4">
-                                <span class="text-xs font-semibold text-sekisui-primary uppercase">Press Release</span>
-                                <h4 class="text-lg font-bold text-gray-900 mt-1 mb-2">Achieving Canadian Quality: W47.1 & A660 Certified</h4>
-                                <p class="text-sm text-gray-600 mb-3">Sekisui Canada Modular Solutions Inc. successfully obtains major Canadian welding and modular building certifications...</p>
-                                <a href="#" onclick="showNewsDetail('article2'); return false;" class="text-sekisui-primary text-sm font-semibold hover:text-sekisui-dark">Read More &rarr;</a>
-                            </div>
-                        </div>
-
-                        <div class="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
-                            <div class="p-4">
-                                <span class="text-xs font-semibold text-sekisui-primary uppercase">Insight</span>
-                                <h4 class="text-lg font-bold text-gray-900 mt-1 mb-2">The Future of Sustainable Housing in Canada</h4>
-                                <p class="text-sm text-gray-600 mb-3">An analysis of regulatory changes and how modular construction is meeting Canada's net-zero goals...</p>
-                                <a href="#" onclick="showNewsDetail('article3'); return false;" class="text-sekisui-primary text-sm font-semibold hover:text-sekisui-dark">Read More &rarr;</a>
-                            </div>
-                        </div>
-                        
-                        <div class="flex-none w-80 bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
-                            <div class="p-4">
-                                <span class="text-xs font-semibold text-sekisui-primary uppercase">Event</span>
-                                <h4 class="text-lg font-bold text-gray-900 mt-1 mb-2">Meet Us at The Building Show 2025!</h4>
-                                <p class="text-sm text-gray-600 mb-3">Visit us at the largest construction event in Toronto to see our latest innovations and designs.</p>
-                                <a href="#" onclick="showNewsDetail('article4'); return false;" class="text-sekisui-primary text-sm font-semibold hover:text-sekisui-dark">Read More &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="min-w-full aspect-square md:aspect-auto md:h-[600px] relative">
+            <img src="Slider2.jpg" class="w-full h-full object-cover" alt="Production Facility">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent flex flex-col justify-end p-8 md:p-16 text-white">
+                <h2 class="text-3xl md:text-5xl font-bold mb-2">Uncompromising Quality. Unparalleled Comfort.</h2>
+                <p class="text-lg md:text-xl opacity-90 max-w-2xl">A greener future. Flawless modern living.</p>
             </div>
-            </section>
+        </div>
+<div class="min-w-full aspect-square md:aspect-auto md:h-[600px] relative">
+            <img src="Slider3.png" class="w-full h-full object-cover" alt="Production Facility">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent flex flex-col justify-end p-8 md:p-16 text-white">
+                <h2 class="text-3xl md:text-5xl font-bold mb-2">Sustainable Design. Enduring Beauty.</h2>
+                <p class="text-lg md:text-xl opacity-90 max-w-2xl">Precision-built spaces tailored for modern living.</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <button onclick="changeSlide(-1)" class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/80 p-4 rounded-full backdrop-blur-sm transition-all text-white hover:text-sekisui-primary z-10">
+        &#10094;
+    </button>
+    <button onclick="changeSlide(1)" class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/80 p-4 rounded-full backdrop-blur-sm transition-all text-white hover:text-sekisui-primary z-10">
+        &#10095;
+    </button>
+</div>
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-5 md:mt-5">
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
+            Pioneering <span class="text-sekisui-primary">Modular Construction</span> in Canada
+        </h1>
+        <p class="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
+            Delivering precision-engineered, sustainable, and timely building solutions...
+        </p>
+            
+        </div>
+        <div class="flex justify-center space-x-4">
+            <a href="#benefits" onclick="showSection('benefits'); return false;" class="inline-block bg-sekisui-primary text-white text-lg font-semibold px-8 py-3 square-xl shadow-2xl hover:bg-sekisui-dark transition duration-300">
+                Explore Our Solutions
+            </a>
+        </div>
+    </div>
+</section>
 
         <section id="news-detail" class="page-section py-16 md:py-28 bg-white hidden">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -230,7 +317,7 @@
                     <svg class="w-4 h-4 mr-1 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     Back to Home
                 </a>
-                <div class="bg-sekisui-light p-6 rounded-xl mb-6">
+                <div class="bg-sekisui-light p-6 square-xl mb-6">
                      <span id="news-category" class="text-sm font-semibold text-sekisui-dark uppercase"></span>
                 </div>
                 <h1 id="news-title" class="text-4xl font-extrabold text-gray-900 mb-4"></h1>
@@ -240,123 +327,276 @@
             </div>
         </section>
 
-        <section id="benefits" class="page-section py-20 bg-gray-50 hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-gray-900 mb-4">
+       <section id="benefits" class="page-section py-20 bg-gray-50 hidden relative transition-colors duration-700">
+            
+            <div id="section-bg-1" class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 z-0">
+                <img src="slider1.png" class="w-full h-full object-cover" alt="Accelerated Timelines Background" onerror="this.src='https://placehold.co/1920x1080/003A7D/white?text=Accelerated+Timelines+Image'">
+                <div class="absolute inset-0 bg-sekisui-dark/85"></div> </div>
+            <div id="section-bg-2" class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 z-0">
+                <img src="slider2.jpg" class="w-full h-full object-cover" alt="Uncompromising Quality Background" onerror="this.src='https://placehold.co/1920x1080/003A7D/white?text=Uncompromising+Quality+Image'">
+                <div class="absolute inset-0 bg-sekisui-dark/85"></div>
+            </div>
+            <div id="section-bg-3" class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 z-0">
+                <img src="slider3.png" class="w-full h-full object-cover" alt="Sustainable Background" onerror="this.src='https://placehold.co/1920x1080/003A7D/white?text=Sustainable+&+Efficient+Image'">
+                <div class="absolute inset-0 bg-sekisui-dark/85"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <h2 id="benefits-title" class="text-3xl sm:text-4xl font-extrabold text-center text-gray-900 mb-4 transition-colors duration-500">
                     Advantages of Sekisui Modular
                 </h2>
-                <p class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
+                <p id="benefits-subtitle" class="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto transition-colors duration-500">
                     Enhancing the build process with factory precision, speed, and exceptional quality.
                 </p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-sekisui-primary">
-                        <div class="text-sekisui-primary mb-4">
-                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    
+                    <div class="relative group overflow-hidden bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border-t-4 border-sekisui-primary hover:border-transparent hover:bg-white/10 hover:backdrop-blur-md cursor-default"
+                         onmouseenter="setBenefitHover(1, true)" onmouseleave="setBenefitHover(1, false)">
+                        
+                        <div class="relative z-10 flex flex-col h-full">
+                            <div class="text-sekisui-primary group-hover:text-white mb-4 transition-colors duration-300">
+                                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">Accelerated Timelines</h3>
+                            <p class="text-gray-600 group-hover:text-white/90 transition-colors duration-300">
+                                Factory-based construction minimizes weather delays and allows simultaneous site work, significantly reducing time to occupancy.
+                            </p>
+
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                                <div class="overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                    <p class="pt-4 mt-4 border-t border-white/30 text-white/90 text-sm leading-relaxed">
+                                        By shifting up to 80% of construction activity to our climate-controlled facility, we eliminate seasonal delays. Site preparation and foundation work happen concurrently with module fabrication, ensuring a seamless, rapid deployment to the site.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Accelerated Timelines</h3>
-                        <p class="text-gray-600">Factory-based construction minimizes weather delays and allows simultaneous site work, significantly reducing time to occupancy.</p>
                     </div>
 
-                    <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-sekisui-primary">
-                        <div class="text-sekisui-primary mb-4">
-                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    <div class="relative group overflow-hidden bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border-t-4 border-sekisui-primary hover:border-transparent hover:bg-white/10 hover:backdrop-blur-md cursor-default"
+                         onmouseenter="setBenefitHover(2, true)" onmouseleave="setBenefitHover(2, false)">
+                        
+                        <div class="relative z-10 flex flex-col h-full">
+                            <div class="text-sekisui-primary group-hover:text-white mb-4 transition-colors duration-300">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">Uncompromising Quality</h3>
+                            <p class="text-gray-600 group-hover:text-white/90 transition-colors duration-300">
+                                Controlled indoor environments ensure precision assembly, leading to superior material integration and structural integrity.
+                            </p>
+
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                                <div class="overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                    <p class="pt-4 mt-4 border-t border-white/30 text-white/90 text-sm leading-relaxed">
+                                        Our CSA-certified processes include rigorous quality checks at every station. Using advanced Japanese manufacturing principles, we achieve millimeter precision that is virtually impossible to replicate on a traditional job site.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Uncompromising Quality</h3>
-                        <p class="text-gray-600">Controlled indoor environments ensure precision assembly, leading to superior material integration and structural integrity.</p>
                     </div>
 
-                    <div class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-sekisui-primary">
-                        <div class="text-sekisui-primary mb-4">
-                             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m0 0l-1.414 1.414m1.414-1.414l1.414 1.414m-1.414 1.414l1.414-1.414m-1.414 1.414L12 12m0 0l6.75-6.75m-6.75 6.75l-6.75 6.75m6.75-6.75l6.75 6.75m-6.75-6.75L12 12m0 0l-6.75-6.75m6.75 6.75l6.75 6.75"></path></svg>
+                    <div class="relative group overflow-hidden bg-white p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border-t-4 border-sekisui-primary hover:border-transparent hover:bg-white/10 hover:backdrop-blur-md cursor-default"
+                         onmouseenter="setBenefitHover(3, true)" onmouseleave="setBenefitHover(3, false)">
+                        
+                        <div class="relative z-10 flex flex-col h-full">
+                            <div class="text-sekisui-primary group-hover:text-white mb-4 transition-colors duration-300">
+                                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-white mb-2 transition-colors duration-300">Sustainable & Efficient</h3>
+                            <p class="text-gray-600 group-hover:text-white/90 transition-colors duration-300">
+                                Reduced site waste and high thermal performance contribute to greener buildings and lower long-term operating costs.
+                            </p>
+
+                            <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
+                                <div class="overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                                    <p class="pt-4 mt-4 border-t border-white/30 text-white/90 text-sm leading-relaxed">
+                                        Modular construction reduces material waste by up to 40%. Furthermore, the extreme airtightness and superior insulation of our modules result in remarkable energy efficiency, easily meeting advanced step-code requirements across Canada.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Sustainable & Efficient</h3>
-                        <p class="text-gray-600">Reduced site waste and high thermal performance contribute to greener buildings and lower long-term operating costs.</p>
                     </div>
+
                 </div>
             </div>
+
+            <script>
+                function setBenefitHover(index, isHovering) {
+                    const bg = document.getElementById(`section-bg-${index}`);
+                    const title = document.getElementById('benefits-title');
+                    const subtitle = document.getElementById('benefits-subtitle');
+                    
+                    if (isHovering) {
+                        bg.classList.remove('opacity-0');
+                        title.classList.replace('text-gray-900', 'text-white');
+                        subtitle.classList.replace('text-gray-600', 'text-white/90');
+                    } else {
+                        bg.classList.add('opacity-0');
+                        title.classList.replace('text-white', 'text-gray-900');
+                        subtitle.classList.replace('text-white/90', 'text-gray-600');
+                    }
+                }
+            </script>
         </section>
 
         <section id="history" class="page-section py-20 bg-white hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="md:flex md:items-center md:space-x-12">
-                    <div class="md:w-1/2 flex justify-center items-center">
-                        <div class="collage-container">
-                            <img src="history-img-1.png" id="img1" alt="Sekisui Modular Factory Interior" class="collage-img"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/a8c7f3/004EA2?text=Factory+Precision'"
-                            >
-                            <img src="history-img-2.png" id="img2" alt="Finished Sekisui Heim Residential Project" class="collage-img"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/c7d2fe/004EA2?text=Japan+Residential'"
-                            >
-                            <img src="history-img-3.png" id="img3" alt="Modular Unit Installation by Crane" class="collage-img"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/e0f2fe/004EA2?text=On-Site+Assembly'"
-                            >
-                        </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="inline-block bg-sekisui-light text-sekisui-dark text-xs font-bold px-3 py-1 square-full uppercase mb-3 tracking-widest">Our Heritage</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">A Legacy of Innovation</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">From the first plastic injection molding in Japan to the future of Canadian housing.</p>
+        </div>
+
+        <div class="timeline-container max-w-4xl mx-auto">
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="md:w-1/4 mb-2">
+                        <span class="text-3xl font-black text-sekisui-primary">1947</span>
                     </div>
-                    
-                    <div class="md:w-1/2 mt-[420px] md:mt-0">
-                        <span class="inline-block bg-sekisui-light text-sekisui-dark text-xs font-medium px-3 py-1 rounded-full uppercase mb-3">Our Heritage of Innovation</span>
-                        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
-                            Five Decades of Modular Excellence: The Sekisui Heim Story
-                        </h2>
-                        <p class="text-gray-600 text-lg mb-6">
-                            The foundation of Sekisui Canada Modular Solutions lies in the success story of Sekisui Heim in Japan. Beginning in the early 1970s, Sekisui Heim pioneered high-quality, factory-built residential construction, moving the 80% of the processes indoors to ensure superior precision and consistency. ince launch, we have delivered and sold more than 688,690 houses to date (as of March 2025), of which 254,591 are equipped with solar power systems and 78,976 are equipped with storage batterys, a true testament to our long-standing leadership and innovation in Japan’s housing industry.
-                        </p>
-                        <p class="text-gray-600 text-lg mb-6 font-semibold">
-                            Today, we are proud to bring this proven methodology, perfected for over 50 years in one of the world's most demanding building environments, directly to Canada.
-                        </p>
-                        <p class="text-gray-600 text-lg">
-                            We adapt Sekisui's patented manufacturing technologies and quality control standards to the unique needs and climate of the Canadian market, offering reliable, sustainable, and fast-to-build solutions for the next generation of Canadian infrastructure.
-                        </p>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">The Foundation</h3>
+                        <p class="text-gray-600 leading-relaxed">Sekisui Chemical Co., Ltd. is established in Osaka, Japan, pioneering the comprehensive commercialization of plastics in the post-war era.</p>
+                        <img src="history-1947.jpg" alt="Founding of Sekisui Chemical" class="mt-6 rounded-xl shadow-lg border-2 border-gray-100 w-full h-64 object-cover" onerror="this.src='https://placehold.co/800x400/004EA2/white?text=1947:+Company+Founding'">
                     </div>
                 </div>
             </div>
-        </section>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="md:w-1/4 mb-2">
+                        <span class="text-3xl font-black text-sekisui-primary">1970</span>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Birth of Sekisui Heim</h3>
+                        <p class="text-gray-600 leading-relaxed">Exhibited the "Heim M1" at the International Good Living Show—the first modular house built with over 80% production efficiency.</p>
+                        <img src="history-1970.png" alt="Sekisui Heim M1 Modular House" class="mt-6 rounded-xl shadow-lg border-2 border-gray-100 w-full h-64 object-cover" onerror="this.src='https://placehold.co/800x400/004EA2/white?text=1970:+Heim+M1+Launch'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="md:w-1/4 mb-2">
+                        <span class="text-3xl font-black text-sekisui-primary">1997</span>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Environmental Leadership</h3>
+                        <p class="text-gray-600 leading-relaxed">Commenced full-scale sales of modular housing equipped with solar-power generation systems, leading the industry in sustainable residential design.</p>
+                        <img src="history-1997.jpg" alt="Solar Powered Modular Home" class="mt-6 rounded-xl shadow-lg border-2 border-gray-100 w-full h-64 object-cover" onerror="this.src='https://placehold.co/800x400/004EA2/white?text=1997:+Solar+Power+Integration'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="md:w-1/4 mb-2">
+                        <span class="text-3xl font-black text-sekisui-primary">2009</span>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">International Expansion</h3>
+                        <p class="text-gray-600 leading-relaxed">Constructed a mass-production modular factory in Thailand, perfecting the export of high-quality Japanese manufacturing standards.</p>
+                        <img src="history-2009.jpg" alt="Thailand Factory Operations" class="mt-6 rounded-xl shadow-lg border-2 border-gray-100 w-full h-64 object-cover" onerror="this.src='https://placehold.co/800x400/004EA2/white?text=2013:+Global+Production+Expansion'">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item border-none">
+                <div class="timeline-dot"></div>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="md:w-1/4 mb-2">
+                        <span class="text-3xl font-black text-sekisui-primary">2025</span>
+                    </div>
+                    <div class="md:w-3/4">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Sekisui Canada Modular Solutions</h3>
+                        <p class="text-gray-600 leading-relaxed font-semibold">Bringing over 50 years of modular excellence to the Canadian market to address critical infrastructure and housing needs.</p>
+                       <div class="scroll-trigger-logo mt-6" id="animated-logo">
+    <div class="logo-graphics">
+        <img src="red-circle.png" class="logo-dot" alt="Static Red Circle">
+        <img src="building-base.png" class="logo-building animate-slide-right" alt="Modular Building Base">
+        <img src="module.png" class="logo-box animate-drop-down" alt="Modular Box">
+    </div>
+    <div class="logo-text animate-slide-up">
+        <img src="logo-text.png" alt="Sekisui Canada Modular Solutions text">
+    </div>
+</div>
+                        <div class="mt-8 p-6 bg-sekisui-light border-l-4 border-sekisui-primary rounded-r-xl">
+                            <p class="text-sm text-sekisui-dark italic font-medium">"Innovation for the Earth: Delivering peace of mind that continues into the future."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
         
         <section id="about" class="page-section py-20 bg-white hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-12 border-b-2 border-sekisui-light pb-4">
+                <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-16 border-b-2 border-sekisui-light pb-4">
                     About Sekisui Canada Modular Solutions
                 </h2>
 
-                <div class="mb-12 max-w-5xl mx-auto">
-                    <h3 class="text-3xl font-bold text-gray-800 mb-4 text-center">Our Global Heritage, Local Commitment</h3>
-                    <p class="text-lg text-gray-600 mb-4 leading-relaxed">
-                        Sekisui Canada Modular Solutions Inc. leverages the decades-long global expertise of Sekisui Chemical Co., Ltd. in innovative building technologies and sustainable manufacturing. We bring this world-class pedigree directly to the Canadian market, adapting proven systems to meet the unique challenges and regulatory environment of every province. Our mission is to transform the construction industry through off-site fabrication, delivering superior, predictable, and environmentally responsible projects.
-                    </p>
-                    <p class="text-lg text-gray-600 leading-relaxed">
-                        We are committed to building long-term partnerships with Canadian developers, architects, and institutions, providing a smarter path to occupancy for everything from multi-unit residential buildings to specialized commercial facilities.
-                    </p>
-                </div>
-
-                <div class="max-w-3xl mx-auto mb-16">
-                    <div class="text-center bg-sekisui-light p-8 rounded-2xl shadow-xl border-4 border-sekisui-primary">
-                        <img src="kifuji.png" alt="Team Member Avatar" class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-white shadow-lg">
-                        <h4 class="text-2xl font-extrabold text-gray-900">Masatoshi Kifuji</h4>
-                        <p class="text-sekisui-primary text-xl font-bold mb-3">President and Chief Executive Officer</p>
-                        <p class="text-base text-gray-600 max-w-lg mx-auto">
-                            Mr. Kifuji provides the strategic leadership and global vision driving Sekisui Chemical Group's commitment to sustainable growth and pioneering innovative solutions worldwide.
-                        </p>
-                    </div>
-                </div>
-
-                <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">Supporting Leadership Team</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 relative">
                     
-                    <div class="text-center bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
-                        <img src="JB.jpg" alt="Team Member Avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md">
-                        <h4 class="text-xl font-bold text-gray-900">Joshua Brown</h4>
-                        <p class="text-sekisui-primary font-semibold mb-2">Vice President and Chief Manufacturing Officer</p>
-                        <p class="text-sm text-gray-500">Oversees factory operations, quality control, and production efficiency across all modular facilities.</p>
+                    <div class="lg:col-span-5 relative">
+                        <div class="sticky top-32"> 
+                            <h3 class="text-3xl font-bold text-gray-800 mb-6">Our Global Heritage, Local Commitment</h3>
+                            <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                                Sekisui Canada Modular Solutions Inc. leverages the decades-long global expertise of Sekisui Chemical Co., Ltd. in innovative building technologies and sustainable manufacturing. We bring this world-class pedigree directly to the Canadian market, adapting proven systems to meet the unique challenges and regulatory environment of every province. Our mission is to transform the construction industry through off-site fabrication, delivering superior, predictable, and environmentally responsible projects.
+                            </p>
+                            <p class="text-lg text-gray-600 leading-relaxed">
+                                We are committed to building long-term partnerships with Canadian developers, architects, and institutions, providing a smarter path to occupancy for everything from multi-unit residential buildings to specialized commercial facilities.
+                            </p>
+                        </div>
                     </div>
 
-                    <div class="text-center bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary">
-                        <img src="nomura.png" alt="Team Member Avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-white shadow-md">
-                        <h4 class="text-xl font-bold text-gray-900">Shunto Nomura</h4>
-                        <p class="text-sekisui-primary font-semibold mb-2">Manufacturing Technology Manager</p>
-                        <p class="text-sm text-gray-500">Manages site logistics and coordination to ensure rapid, seamless installation.</p>
-                    </p>
+                    <div class="lg:col-span-7 space-y-10">
+                        
+                        <div class="bg-sekisui-light p-8 square-2xl shadow-xl border-4 border-sekisui-primary flex flex-col md:flex-row items-center md:items-start gap-8 text-center md:text-left">
+                            <img src="kifuji.png" alt="Masatoshi Kifuji" class="w-32 h-32 square-full flex-shrink-0 border-4 border-white shadow-lg">
+                            <div>
+                                <h4 class="text-2xl font-extrabold text-gray-900">Masatoshi Kifuji</h4>
+                                <p class="text-sekisui-primary text-xl font-bold mb-3">President and Chief Executive Officer</p>
+                                <p class="text-base text-gray-600">
+                                    Provides the strategic leadership and global vision that guide Sekisui Chemical Group’s pursuit of sustainable growth and industry‑defining innovation. He champions long‑term value creation, strengthens global partnerships, and fosters a culture of excellence across Canadian business units.
+                                </p>
+                            </div>
+                        </div>
+
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Supporting Leadership Team</h3>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div class="bg-gray-50 p-6 square-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary text-center md:text-left flex flex-col items-center md:items-start">
+                                <img src="JB.png" alt="Joshua Brown" class="w-24 h-24 square-full mb-4 border-4 border-white shadow-md">
+                                <h4 class="text-xl font-bold text-gray-900">Joshua Brown</h4>
+                                <p class="text-sekisui-primary font-semibold mb-2">Vice President and Chief Manufacturing Officer</p>
+                                <p class="text-sm text-gray-500">Directs all modular manufacturing operations, ensuring quality, efficiency, and high‑performance team leadership across facilities.</p>
+                            </div>
+
+                            <div class="bg-gray-50 p-6 square-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary text-center md:text-left flex flex-col items-center md:items-start">
+                                <img src="nomura.jpeg" alt="Shunto Nomura" class="w-24 h-24 square-full mb-4 border-4 border-white shadow-md">
+                                <h4 class="text-xl font-bold text-gray-900">Shunto Nomura</h4>
+                                <p class="text-sekisui-primary font-semibold mb-2">Manufacturing Technology Manager</p>
+                                <p class="text-sm text-gray-500">Oversees automation, advanced manufacturing systems, and shop‑floor technology to enhance production capabilities.</p>
+                            </div>
+
+                            <div class="bg-gray-50 p-6 square-xl shadow-lg hover:shadow-xl transition duration-300 border-t-4 border-sekisui-primary text-center md:text-left flex flex-col items-center md:items-start">
+                                <img src="Feryal.png" alt="Feryal Gheidar" class="w-24 h-24 square-full mb-4 border-4 border-white shadow-md">
+                                <h4 class="text-xl font-bold text-gray-900">Feryal Gheidar</h4>
+                                <p class="text-sekisui-primary font-semibold mb-2">Operations Manager</p>
+                                <p class="text-sm text-gray-500">Leads the Project Delivery Team and manages organizational operations to support seamless project execution and internal coordination.</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -371,37 +611,37 @@
                     Start a conversation with our Canadian Modular Solutions team today.
                 </p>
 
-                <form class="bg-white p-8 md:p-10 rounded-xl shadow-2xl border-t-4 border-sekisui-primary space-y-6">
+                <form class="bg-white p-8 md:p-10 square-xl shadow-2xl border-t-4 border-sekisui-primary space-y-6">
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="John Doe">
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 square-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="John Doe">
                         </div>
                         <div>
                             <label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company / Organization</label>
-                            <input type="text" id="company" name="company" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="Sekisui Canada Modular Solutions Inc.">
+                            <input type="text" id="company" name="company" required class="w-full px-4 py-2 border border-gray-300 square-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="Sekisui Canada Modular Solutions Inc.">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="name@company.com">
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 square-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="name@company.com">
                         </div>
                         <div>
                             <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telephone Number</label>
-                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="(555) 555-5555">
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 square-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="(555) 555-5555">
                         </div>
                     </div>
 
                     <div>
                         <label for="inquiry" class="block text-sm font-medium text-gray-700 mb-1">Reason for Inquiry</label>
-                        <textarea id="inquiry" name="inquiry" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="I am interested in multi-unit residential projects in Ontario and would like a quote..."></textarea>
+                        <textarea id="inquiry" name="inquiry" rows="4" required class="w-full px-4 py-2 border border-gray-300 square-lg focus:ring-sekisui-primary focus:border-sekisui-primary transition duration-150" placeholder="I am interested in multi-unit residential projects in Ontario and would like a quote..."></textarea>
                     </div>
 
                     <div>
-                        <button type="submit" class="w-full bg-sekisui-primary text-white text-lg font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-sekisui-dark transition duration-300 transform hover:scale-[1.01]">
+                        <button type="submit" class="w-full bg-sekisui-primary text-white text-lg font-semibold px-6 py-3 square-xl shadow-lg hover:bg-sekisui-dark transition duration-300 transform hover:scale-[1.01]">
                             Send Inquiry
                         </button>
                     </div>
@@ -418,7 +658,7 @@
             <p class="text-xl text-white/80 mb-8">
                 If you prefer not to use the form, contact our specialists directly.
             </p>
-            <a href="mailto:sales@sekisui-cms.com" class="inline-block bg-white text-sekisui-primary text-xl font-bold px-10 py-4 rounded-xl shadow-3xl hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+            <a href="mailto:sales@sekisui-cms.com" class="inline-block bg-white text-sekisui-primary text-xl font-bold px-10 py-4 square-xl shadow-3xl hover:bg-gray-100 transition duration-300 transform hover:scale-105">
                 Email Our Team
             </a>
         </div>
@@ -447,7 +687,7 @@
                     <p>President and Chief Executive Officer Masatoshi Kifuji stated, "Canada presents a strong opportunity where our industrialized building systems can provide immediate, positive impact on construction speed, quality, and environmental performance. We are committed to being a reliable partner in building Canada's future."</p>
                 `
             },
-            article2: {
+	    article2: {
                 category: 'Press Release',
                 title: 'Sekisui Canada Achieves W47.1 and A660 Certifications',
                 date: 'October 28, 2025',
@@ -462,7 +702,23 @@
                     <p>These certifications are fundamental to our promise of delivering predictable timelines and superior quality, regardless of construction site conditions.</p>
                 `
             },
+
             article3: {
+                category: 'Press Release',
+                title: 'Sekisui Canada Achieves W47.1 and A660 Certifications',
+                date: 'October 28, 2025',
+                content: `
+                    <p><strong>Burlington, ON</strong> &mdash; Sekisui Canada Modular Solutions Inc. has successfully achieved key Canadian Standards Association (CSA) certifications, reinforcing its commitment to high-quality, industrialized construction.</p>
+                    <p>The company is now certified to:
+                    <ul>
+                        <li><strong>CSA W47.1:</strong> Certification of Companies for Fusion Welding of Steel Structures. This rigorous standard confirms that our facility, personnel, and procedures meet the highest standards for welding quality and inspection of steel modular frames, ensuring unparalleled structural integrity.</li>
+                        <li><strong>CSA A660:</strong> Certification for Prefabricated Buildings, Modules, and Transportable Buildings. This certification verifies that our modular units are manufactured under a strict, audited quality control program that ensures compliance with all Canadian Building Codes and necessary provincial regulations before they even leave the factory.</li>
+                    </ul></p>
+                    <p>Joshua Brown, VP and Chief Manufacturing Officer, commented: "Achieving both W47.1 and A660 demonstrates that we have not only adapted our advanced Japanese manufacturing principles to the Canadian environment but have also rigorously met and exceeded local regulatory demands. This provides our clients with complete confidence in the quality and durability of every module we deliver."</p>
+                    <p>These certifications are fundamental to our promise of delivering predictable timelines and superior quality, regardless of construction site conditions.</p>
+                `
+            }, 
+            article4: {
                 category: 'Insight',
                 title: 'The Future of Sustainable Housing in Canada',
                 date: 'September 1, 2025',
@@ -472,7 +728,7 @@
                     <p>Our systems not only meet BC's Step Code requirements but can exceed them, providing developers in the province with a reliable, scalable, and sustainable building partner ready for the future of Canadian construction.</p>
                 `
             },
-            article4: {
+            article5: {
                 category: 'Event',
                 title: 'Meet Us at The Building Show 2025',
                 date: 'August 10, 2025',
@@ -535,6 +791,79 @@
                 showSection('hero');
             }
         });
+let currentSlide = 0;
+const wrapper = document.getElementById('slider-wrapper');
+const slides = wrapper ? wrapper.children : [];
+const totalSlides = slides.length;
+
+function updateSlider() {
+    const offset = -currentSlide * 100;
+    wrapper.style.transform = `translateX(${offset}%)`;
+    // Update dots if you choose to add them
+}
+
+function changeSlide(direction) {
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    updateSlider();
+}
+
+// Auto-play feature (every 5 seconds)
+setInterval(() => {
+    changeSlide(1);
+}, 7000);
+// --- Timeline Scroll Animation ---
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Animate the timeline items
+    const itemObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                // Optional: Stop observing once it's shown so it doesn't animate out and in repeatedly
+                itemObserver.unobserve(entry.target); 
+            }
+        });
+    }, {
+        threshold: 0.2 // Triggers when 20% of the item is visible at the bottom of the screen
+    });
+
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item) => {
+        itemObserver.observe(item);
+    });
+
+    // 2. Animate the central vertical line
+    const containerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show-line');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    const timelineContainer = document.querySelector('.timeline-container');
+    if (timelineContainer) {
+        containerObserver.observe(timelineContainer);
+    }
+});
+
+// --- Animated Logo Observer ---
+document.addEventListener('DOMContentLoaded', () => {
+    const logoContainer = document.getElementById('animated-logo');
+    if (logoContainer) {
+        const logoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    logoObserver.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.5 // Triggers when 50% of the logo area is visible
+        });
+        
+        logoObserver.observe(logoContainer);
+    }
+});
     </script>
 
 </body>
