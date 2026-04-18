@@ -129,46 +129,51 @@
 
 .logo-dot {
     position: relative;
-    top: 62px;
-    left: 8.2%; 
-    width: 330px; 
+    margin: 0 auto; /* This forces the image to center itself */
+    display: block; /* Ensures it respects the auto margins */
+    top: 36px;
+    left: -1.5%; 
+    width: 380px; 
     z-index: 1;
 }
 
 .logo-building {
     position: relative;
-    top: -113px;
-    right: -7.5%;
-    width: 350px;
+    margin: 0 auto; /* This forces the image to center itself */
+    display: block; /* Ensures it respects the auto margins */
+    top: -169px;
+    right: 0.4%;
+    width: 400px;
     z-index: 2;
 }
 
 /* Nudge these top/left values to align your flying box perfectly */
 .logo-box {
-    margin: 0 auto;
-	position: relative;
+    position: relative;
+    margin: 0 auto; /* This forces the image to center itself */
+    display: block; /* Ensures it respects the auto margins */
     z-index: 3; 
-    width: 350px; 
-    top: -294px;   
-    left: 7.5%;   
+    width: 400px; 
+    top: -376px;   
+    left: -0.4%;   
 }
 
 .logo-text {
-    position: relative;
-	margin-top: -110px;
-    width: 80%;
-    margin: 0 auto;
-	 z-index: 3;
+    
+    margin: 0 auto; /* This forces the image to center itself */
+    display: block; /* Ensures it respects the auto margins */
+    margin-top: -140px;
+    
+    width: 100%;
+    text-align: center;
 }
 
 .logo-text img {
-    position: relative;
-	left: 6%; 
-	margin: 0 auto; /* This forces the image to center itself */
+    
+    margin: 0 auto; /* This forces the image to center itself */
     display: block; /* Ensures it respects the auto margins */
-	width: 80%;
+    width: 100%;
     max-width: 400px;
-	z-index: 3;
 }
 
 .animate-slide-right {
@@ -338,14 +343,14 @@
        <section id="benefits" class="page-section py-20 bg-gray-50 hidden relative transition-colors duration-700">
             
             <div id="section-bg-1" class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 z-0">
-                <img src="Slider1.png" class="w-full h-full object-cover" alt="Accelerated Timelines Background" onerror="this.src='https://placehold.co/1920x1080/003A7D/white?text=Accelerated+Timelines+Image'">
+                <img src="slider1.png" class="w-full h-full object-cover" alt="Accelerated Timelines Background" onerror="this.src='https://placehold.co/1920x1080/003A7D/white?text=Accelerated+Timelines+Image'">
                 <div class="absolute inset-0 bg-sekisui-dark/85"></div> </div>
             <div id="section-bg-2" class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 z-0">
-                <img src="Slider2.jpg" class="w-full h-full object-cover" alt="Uncompromising Quality Background" onerror="this.src='https://placehold.co/1920x1080/003A7D/white?text=Uncompromising+Quality+Image'">
+                <img src="slider2.jpg" class="w-full h-full object-cover" alt="Uncompromising Quality Background" onerror="this.src='https://placehold.co/1920x1080/003A7D/white?text=Uncompromising+Quality+Image'">
                 <div class="absolute inset-0 bg-sekisui-dark/85"></div>
             </div>
             <div id="section-bg-3" class="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-700 z-0">
-                <img src="Slider3.png" class="w-full h-full object-cover" alt="Sustainable Background" onerror="this.src='https://placehold.co/1920x1080/003A7D/white?text=Sustainable+&+Efficient+Image'">
+                <img src="slider3.png" class="w-full h-full object-cover" alt="Sustainable Background" onerror="this.src='https://placehold.co/1920x1080/003A7D/white?text=Sustainable+&+Efficient+Image'">
                 <div class="absolute inset-0 bg-sekisui-dark/85"></div>
             </div>
 
