@@ -205,7 +205,22 @@
 .is-visible .animate-drop-down {
     transition-delay: 1.5s; 
 }
-
+/* --- Mobile Alignment Fixes --- */
+@media (max-width: 768px) {
+    /* 1. Push the flying box down */
+    .logo-box {
+        top: -376px; 
+    }
+    
+    /* 2. Pull the red dot up */
+    .logo-dot {
+        top: 36px; /* Decrease this number to move it even higher, increase to move lower */
+        
+        /* You can also adjust left/right if needed:
+           left: 8%;
+        */
+    }
+}
     </style>
 </head>
 <body class="min-h-screen antialiased">
