@@ -142,7 +142,7 @@
     margin: 0 auto; /* This forces the image to center itself */
     display: block; /* Ensures it respects the auto margins */
     top: -169px;
-    right: 0.4%;
+    left: 0.4%;
     width: 400px;
     z-index: 2;
 }
@@ -155,11 +155,11 @@
     z-index: 3; 
     width: 400px; 
     top: -376px;   
-    left: -0.4%;   
+    left: 0.4%;   
 }
 
 .logo-text {
-    
+    position: relative;
     margin: 0 auto; /* This forces the image to center itself */
     display: block; /* Ensures it respects the auto margins */
     margin-top: -140px;
@@ -169,7 +169,7 @@
 }
 
 .logo-text img {
-    
+    position: relative;
     margin: 0 auto; /* This forces the image to center itself */
     display: block; /* Ensures it respects the auto margins */
     width: 100%;
@@ -206,7 +206,7 @@
     transition-delay: 1.5s; 
 }
 /* --- Mobile Alignment Fixes --- */
-@media (max-width: 768px) {
+@media (max-width: 468px) {
     /* 1. Push the flying box down */
     .logo-box {
         top: -346px; 
