@@ -205,22 +205,17 @@
 .is-visible .animate-drop-down {
     transition-delay: 1.5s; 
 }
-/* --- Mobile Alignment Fixes --- */
-@media (max-width: 468px) {
-    /* 1. Push the flying box down */
-    .logo-box {
-        top: -346px; 
-    }
-    
-    /* 2. Pull the red dot up */
-    .logo-dot {
-        top: 26px; /* Decrease this number to move it even higher, increase to move lower */
-        
-        /* You can also adjust left/right if needed:
-           left: 8%;
-        */
-    }
+/* --- True Mobile Device Alignment Fixes --- */
+.is-mobile-device .logo-box {
+    top: -346px; 
 }
+
+.is-mobile-device .logo-dot {
+    top: 10px; 
+}
+
+
+
     </style>
 </head>
 <body class="min-h-screen antialiased">
@@ -892,6 +887,13 @@ document.addEventListener('DOMContentLoaded', () => {
         logoObserver.observe(logoContainer);
     }
 });
+// Check if the user is on a mobile device
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // If they are, add a class to the body tag
+    if (isMobileDevice) {
+        document.body.classList.add('is-mobile-device');
+    }
     </script>
 
 </body>
